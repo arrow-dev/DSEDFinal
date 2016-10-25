@@ -173,13 +173,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610251934201_InitializeDatabase.cs" />
-    <Compile Include="Migrations\201610251934201_InitializeDatabase.Designer.cs">
-      <DependentUpon>201610251934201_InitializeDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201610252259043_UpdateOrganization.cs" />
+    <Compile Include="Migrations\201610252259043_UpdateOrganization.Designer.cs">
+      <DependentUpon>201610252259043_UpdateOrganization.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Organization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
@@ -253,8 +254,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610251934201_InitializeDatabase.resx">
-      <DependentUpon>201610251934201_InitializeDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201610252259043_UpdateOrganization.resx">
+      <DependentUpon>201610252259043_UpdateOrganization.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
