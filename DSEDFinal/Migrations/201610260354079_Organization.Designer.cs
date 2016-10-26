@@ -7,13 +7,13 @@ namespace DSEDFinal.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class UpdateOrganization : IMigrationMetadata
+    public sealed partial class Organization : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateOrganization));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Organization));
         
         string IMigrationMetadata.Id
         {
-            get { return "201610252259043_UpdateOrganization"; }
+            get { return "201610260354079_Organization"; }
         }
         
         string IMigrationMetadata.Source
