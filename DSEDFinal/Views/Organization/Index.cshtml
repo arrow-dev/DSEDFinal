@@ -1,0 +1,15 @@
+﻿@model IEnumerable<DSEDFinal.Models.Organization>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Organizations</h2>
+<ul>
+    @foreach (var organization in Model)
+    {
+        <li>
+            @organization.Name
+        </li>
+    }
+</ul>
+
