@@ -1,6 +1,7 @@
 ﻿using DSEDFinal.Models;
 using DSEDFinal.ViewModels;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -24,6 +25,18 @@ namespace DSEDFinal.Controllers
                 .ToList();
 
             return View(organizations);
+        }
+
+        [Authorize]
+        public ActionResult Details(int id)
+        {
+            var viewModel = new OrganizationDetailsViewModel()
+            {
+                Organization = _context.Organizations.Find(id),
+                Memberships = _context.Memberships.Where(m => m.OrganizationId == id).Include(m => m.Member).ToList()
+            };
+
+            return View(viewModel);
         }
 
         [Authorize]
@@ -51,6 +64,49 @@ namespace DSEDFinal.Controllers
 
             _context.Organizations.Add(organization);
             _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        [Authorize]
+        public ActionResult AddMember(int id)
+        {
+            var viewModel = new AddMembershipFormViewModel()
+            {
+                OrganizationId = id
+            };
+
+            return View(viewModel);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddMember(AddMembershipFormViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("AddMember", viewModel);
+            }
+
+            var userId = User.Identity.GetUserId();
+            var newMemberId = _context.Users.Single(u => u.Email == viewModel.Email).Id;
+            var organizationId = viewModel.OrganizationId;
+
+
+            if (!_context.Memberships.Any(m => m.MemberId == newMemberId && m.OrganizationId == organizationId))
+            {
+                var membership = new Membership()
+                {
+                    OrganizationId = organizationId,
+                    MemberId = newMemberId
+                };
+
+                _context.Memberships.Add(membership);
+                _context.SaveChanges();
+            }
+            
+            
 
             return RedirectToAction("Index");
         }

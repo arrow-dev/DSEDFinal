@@ -182,6 +182,10 @@
     <Compile Include="Migrations\201610260355282_Membership.Designer.cs">
       <DependentUpon>201610260355282_Membership.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610261950063_AddMembersToOrganisation.cs" />
+    <Compile Include="Migrations\201610261950063_AddMembersToOrganisation.Designer.cs">
+      <DependentUpon>201610261950063_AddMembersToOrganisation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -190,8 +194,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="ViewModels\AddMembershipFormViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
+    <Compile Include="ViewModels\OrganizationDetailsViewModel.cs" />
     <Compile Include="ViewModels\OrganizationFormViewModel.cs" />
+    <Compile Include="ViewModels\ValidUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -250,6 +257,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Organization\Index.cshtml" />
     <Content Include="Views\Organization\Create.cshtml" />
+    <Content Include="Views\Organization\Details.cshtml" />
+    <Content Include="Views\Organization\AddMember.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -268,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610260355282_Membership.resx">
       <DependentUpon>201610260355282_Membership.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610261950063_AddMembersToOrganisation.resx">
+      <DependentUpon>201610261950063_AddMembersToOrganisation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

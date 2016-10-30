@@ -1,0 +1,19 @@
+﻿@model DSEDFinal.ViewModels.AddMembershipFormViewModel
+@{
+    ViewBag.Title = "AddMember";
+}
+
+<h2>AddMember</h2>
+@using (Html.BeginForm("AddMember", "Organization"))
+{
+    <p class="alert alert-info">All fields are <strong>required</strong>.</p>
+    @Html.AntiForgeryToken();
+    <div class="form-group">
+        @Html.HiddenFor(m=>m.OrganizationId)
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new {@class = "form-control", autofocus = "autofocus"})
+        @Html.ValidationMessageFor(m => m.Email)
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+

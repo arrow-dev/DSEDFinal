@@ -1,0 +1,13 @@
+﻿@model DSEDFinal.ViewModels.OrganizationDetailsViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details for: @Model.Organization.Name</h2>
+<ul>
+    @foreach (var membership in Model.Memberships)
+    {
+        <li>@membership.Member.UserName</li>
+    }
+</ul>
+
