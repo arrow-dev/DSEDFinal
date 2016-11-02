@@ -7,6 +7,8 @@ namespace DSEDFinal.Models
     {
         public DbSet<Organization> Organizations { get; set; }
         public DbSet<Membership> Memberships { get; set; }
+        public DbSet<Job> Jobs { get; set; }
+        public DbSet<Hazard> Hazards { get; set; }
          
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -22,6 +24,11 @@ namespace DSEDFinal.Models
         {
             modelBuilder.Entity<Membership>()
                 .HasRequired(m => m.Member)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Hazard>()
+                .HasRequired(h => h.User)
                 .WithMany()
                 .WillCascadeOnDelete(false);
 

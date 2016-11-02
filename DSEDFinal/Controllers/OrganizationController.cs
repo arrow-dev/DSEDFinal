@@ -1,6 +1,7 @@
 ﻿using DSEDFinal.Models;
 using DSEDFinal.ViewModels;
 using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -20,21 +21,34 @@ namespace DSEDFinal.Controllers
         public ActionResult Index()
         {
             var user_Id = User.Identity.GetUserId();
-            var organizations = _context.Organizations
-                .Where(o => o.OwnerId == user_Id)
-                .ToList();
+            var viewModel = new HomeViewModel
+            {
+                MyOrganizations = _context.Organizations
+                    .Where(o => o.OwnerId == user_Id)
+                    .ToList(),
 
-            return View(organizations);
+                MyMemberships = _context.Memberships
+                    .Where(m => m.MemberId == user_Id)
+                    .Select(m => m.Organization)
+                    .ToList()
+            };
+
+            return View(viewModel);
         }
 
         [Authorize]
         public ActionResult Details(int id)
         {
+            var userId = User.Identity.GetUserId();
             var viewModel = new OrganizationDetailsViewModel()
             {
                 Organization = _context.Organizations.Find(id),
                 Memberships = _context.Memberships.Where(m => m.OrganizationId == id).Include(m => m.Member).ToList()
             };
+            if (viewModel.Organization.OwnerId== userId)
+            {
+                viewModel.ShowActions = true;
+            }
 
             return View(viewModel);
         }
@@ -108,7 +122,13 @@ namespace DSEDFinal.Controllers
             
             
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", new { id = organizationId});
         }
+    }
+
+    public class HomeViewModel
+    {
+        public IEnumerable<Organization> MyOrganizations { get; set; }
+        public IEnumerable<Organization> MyMemberships { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace DSEDFinal.Models
 {
@@ -13,5 +15,12 @@ namespace DSEDFinal.Models
         [Required]
         public string OwnerId { get; set; }
         public ApplicationUser Owner { get; set; }
+
+        public IEnumerable<Job> Jobs { get; set; }
+
+        public Organization()
+        {
+            Jobs = new Collection<Job>();
+        }
     }
 }

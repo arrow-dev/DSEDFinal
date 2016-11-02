@@ -7,13 +7,13 @@ namespace DSEDFinal.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddMembersToOrganisation : IMigrationMetadata
+    public sealed partial class AddJobAndHazardToDomainModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddMembersToOrganisation));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddJobAndHazardToDomainModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "201610261950063_AddMembersToOrganisation"; }
+            get { return "201611022211078_AddJobAndHazardToDomainModel"; }
         }
         
         string IMigrationMetadata.Source

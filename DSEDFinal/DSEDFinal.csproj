@@ -182,13 +182,15 @@
     <Compile Include="Migrations\201610260355282_Membership.Designer.cs">
       <DependentUpon>201610260355282_Membership.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201610261950063_AddMembersToOrganisation.cs" />
-    <Compile Include="Migrations\201610261950063_AddMembersToOrganisation.Designer.cs">
-      <DependentUpon>201610261950063_AddMembersToOrganisation.cs</DependentUpon>
+    <Compile Include="Migrations\201611022211078_AddJobAndHazardToDomainModel.cs" />
+    <Compile Include="Migrations\201611022211078_AddJobAndHazardToDomainModel.Designer.cs">
+      <DependentUpon>201611022211078_AddJobAndHazardToDomainModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Hazard.cs" />
+    <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Membership.cs" />
     <Compile Include="Models\Organization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -234,7 +236,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -262,6 +263,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Membership\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -278,8 +280,8 @@
     <EmbeddedResource Include="Migrations\201610260355282_Membership.resx">
       <DependentUpon>201610260355282_Membership.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610261950063_AddMembersToOrganisation.resx">
-      <DependentUpon>201610261950063_AddMembersToOrganisation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611022211078_AddJobAndHazardToDomainModel.resx">
+      <DependentUpon>201611022211078_AddJobAndHazardToDomainModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

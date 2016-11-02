@@ -4,6 +4,12 @@
 }
 
 <h2>Details for: @Model.Organization.Name</h2>
+<h3>Jobs</h3>
+<h3>Members</h3>
+@if (Model.ShowActions)
+{
+    <a href=@Url.Action("AddMember", "Organization", new {id = @Model.Organization.Id}) class="btn btn-primary">Add Member</a>
+}
 <ul>
     @foreach (var membership in Model.Memberships)
     {

@@ -1,14 +1,23 @@
-﻿@model IEnumerable<DSEDFinal.Models.Organization>
+﻿@model DSEDFinal.Controllers.HomeViewModel
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Organizations</h2>
+<h2>My Memberships</h2>
 <ul>
-    @foreach (var organization in Model)
+    @foreach (var organization in Model.MyMemberships)
     {
         <li>
-            @organization.Name
+            <a href=@Url.Action("Details", "Organization", new {id = @organization.Id})>@organization.Name</a>
+        </li>
+    }
+</ul>
+<h2>My Organizations</h2>
+@Html.ActionLink("Add an Organization", "Create", new { }, new {@class = "btn btn-primary"})
+<ul>
+    @foreach (var organization in Model.MyOrganizations)
+    {
+        <li>
+            <a href=@Url.Action("Details", "Organization", new { id = @organization.Id})>@organization.Name</a>
         </li>
     }
 </ul>

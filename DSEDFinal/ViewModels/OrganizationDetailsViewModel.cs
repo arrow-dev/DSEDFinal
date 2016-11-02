@@ -7,5 +7,6 @@ namespace DSEDFinal.ViewModels
     {
         public Organization Organization { get; set; }
         public IEnumerable<Membership> Memberships { get; set; }
+        public bool ShowActions { get; set; }
     }
 }
