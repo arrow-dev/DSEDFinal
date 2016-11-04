@@ -103,18 +103,22 @@ namespace DSEDFinal.Controllers
             }
 
             var userId = User.Identity.GetUserId();
-            var newMemberId = _context.Users.Single(u => u.Email == viewModel.Email).Id;
+            var newMember = _context.Users.Single(u => u.Email == viewModel.Email);
             var organizationId = viewModel.OrganizationId;
 
 
-            if (!_context.Memberships.Any(m => m.MemberId == newMemberId && m.OrganizationId == organizationId))
+            if (!_context.Memberships.Any(m => m.MemberId == newMember.Id && m.OrganizationId == organizationId))
             {
                 var membership = new Membership()
                 {
                     OrganizationId = organizationId,
-                    MemberId = newMemberId
+                    MemberId = newMember.Id
                 };
 
+                if (newMember.DefaultOrganizationId == null)
+                {
+                    newMember.DefaultOrganizationId = organizationId;
+                }
                 _context.Memberships.Add(membership);
                 _context.SaveChanges();
             }
