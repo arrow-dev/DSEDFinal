@@ -1,7 +1,6 @@
 ﻿using DSEDFinal.Models;
 using DSEDFinal.ViewModels;
 using Microsoft.AspNet.Identity;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -42,7 +41,7 @@ namespace DSEDFinal.Controllers
             var userId = User.Identity.GetUserId();
             var viewModel = new OrganizationDetailsViewModel()
             {
-                Organization = _context.Organizations.Find(id),
+                Organization = _context.Organizations.Include(o => o.Jobs).FirstOrDefault(o => o.Id == id),
                 Memberships = _context.Memberships.Where(m => m.OrganizationId == id).Include(m => m.Member).ToList()
             };
             if (viewModel.Organization.OwnerId== userId)
@@ -124,11 +123,5 @@ namespace DSEDFinal.Controllers
 
             return RedirectToAction("Details", new { id = organizationId});
         }
-    }
-
-    public class HomeViewModel
-    {
-        public IEnumerable<Organization> MyOrganizations { get; set; }
-        public IEnumerable<Organization> MyMemberships { get; set; }
     }
 }

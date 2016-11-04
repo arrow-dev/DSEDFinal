@@ -168,7 +168,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HazardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Global.asax.cs">
@@ -186,6 +188,10 @@
     <Compile Include="Migrations\201611022211078_AddJobAndHazardToDomainModel.Designer.cs">
       <DependentUpon>201611022211078_AddJobAndHazardToDomainModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611040823476_AddNameAndDefaultOrganizationPropertiesToApplicationUser.cs" />
+    <Compile Include="Migrations\201611040823476_AddNameAndDefaultOrganizationPropertiesToApplicationUser.Designer.cs">
+      <DependentUpon>201611040823476_AddNameAndDefaultOrganizationPropertiesToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -197,6 +203,9 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="ViewModels\AddMembershipFormViewModel.cs" />
+    <Compile Include="ViewModels\HazardFormViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\JobFormViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="ViewModels\OrganizationDetailsViewModel.cs" />
     <Compile Include="ViewModels\OrganizationFormViewModel.cs" />
@@ -211,6 +220,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\DSEDFinal20161103043045 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -223,7 +233,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -260,10 +272,12 @@
     <Content Include="Views\Organization\Create.cshtml" />
     <Content Include="Views\Organization\Details.cshtml" />
     <Content Include="Views\Organization\AddMember.cshtml" />
+    <Content Include="Views\Job\Create.cshtml" />
+    <Content Include="Views\Hazard\Create.cshtml" />
+    <Content Include="Views\Job\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Membership\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -282,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611022211078_AddJobAndHazardToDomainModel.resx">
       <DependentUpon>201611022211078_AddJobAndHazardToDomainModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611040823476_AddNameAndDefaultOrganizationPropertiesToApplicationUser.resx">
+      <DependentUpon>201611040823476_AddNameAndDefaultOrganizationPropertiesToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

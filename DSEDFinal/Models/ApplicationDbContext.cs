@@ -32,6 +32,10 @@ namespace DSEDFinal.Models
                 .WithMany()
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<ApplicationUser>()
+                .HasOptional(a => a.DefaultOrganization)
+                .WithMany();
+
             base.OnModelCreating(modelBuilder);
         }
     }

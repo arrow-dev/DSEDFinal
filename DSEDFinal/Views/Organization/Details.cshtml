@@ -5,15 +5,40 @@
 
 <h2>Details for: @Model.Organization.Name</h2>
 <h3>Jobs</h3>
+<a href=@Url.Action("Create", "Job", new {id = Model.Organization.Id}) class="btn btn-primary">Add Job</a>
+@if (Model.Organization.Jobs.Count() == 0)
+{
+    <p>There are no jobs yet!</p>
+}
+else
+{
+    <ul>
+        @foreach (var job in Model.Organization.Jobs)
+        {
+            <li>
+                <a href=@Url.Action("Details","Job", new { id=job.Id})>@job.Reference</a>
+            </li>
+        }
+    </ul>
+}
+
 <h3>Members</h3>
 @if (Model.ShowActions)
 {
     <a href=@Url.Action("AddMember", "Organization", new {id = @Model.Organization.Id}) class="btn btn-primary">Add Member</a>
 }
-<ul>
-    @foreach (var membership in Model.Memberships)
-    {
-        <li>@membership.Member.UserName</li>
-    }
-</ul>
+@if (Model.Memberships.Count() == 0)
+{
+    <p>This Organization has no members!</p>
+}
+else
+{
+    <ul>
+        @foreach (var membership in Model.Memberships)
+        {
+            <li>@membership.Member.UserName</li>
+        }
+    </ul>
+}
+
 

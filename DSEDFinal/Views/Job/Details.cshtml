@@ -1,0 +1,20 @@
+﻿@model DSEDFinal.Models.Job
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Hazard Reports for @Model.Reference</h2>
+@if (Model.Hazards.Count == 0)
+{
+    <p>There are no hazards for this job yet!</p>
+}
+<p>@Html.ActionLink("Report Hazard", "Create", "Hazard", new { id = Model.Id }, new { @class = "btn btn-primary" })</p>
+<ul>
+    @foreach (var hazard in Model.Hazards)
+    {
+        <li>@hazard.Description <small>posted by @hazard.User.UserName</small></li>
+    }
+</ul>
+
+
+

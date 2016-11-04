@@ -17,7 +17,7 @@ namespace DSEDFinal.Models
         public int OrganizationId { get; set; }
         public Organization Organization { get; set; }
 
-        public IEnumerable<Hazard> Hazards { get; set; }
+        public ICollection<Hazard> Hazards { get; set; }
 
         public Job()
         {

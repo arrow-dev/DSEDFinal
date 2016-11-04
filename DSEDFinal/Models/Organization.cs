@@ -16,7 +16,7 @@ namespace DSEDFinal.Models
         public string OwnerId { get; set; }
         public ApplicationUser Owner { get; set; }
 
-        public IEnumerable<Job> Jobs { get; set; }
+        public ICollection<Job> Jobs { get; set; }
 
         public Organization()
         {
