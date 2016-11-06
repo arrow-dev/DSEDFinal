@@ -12,7 +12,7 @@
 <ul>
     @foreach (var hazard in Model.Hazards)
     {
-        <li>@hazard.Description <small>posted by @hazard.User.UserName</small></li>
+        <li>@hazard.Description <small>posted by @hazard.User.FirstName @hazard.User.LastName</small></li>
     }
 </ul>
 

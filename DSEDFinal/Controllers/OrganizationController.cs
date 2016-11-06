@@ -20,19 +20,23 @@ namespace DSEDFinal.Controllers
         public ActionResult Index()
         {
             var user_Id = User.Identity.GetUserId();
-            var viewModel = new HomeViewModel
-            {
-                MyOrganizations = _context.Organizations
-                    .Where(o => o.OwnerId == user_Id)
-                    .ToList(),
+            var viewModel = _context.Memberships
+                .Where(m => m.MemberId == user_Id)
+                .Select(m => m.Organization)
+                .ToList();
 
-                MyMemberships = _context.Memberships
-                    .Where(m => m.MemberId == user_Id)
-                    .Select(m => m.Organization)
-                    .ToList()
-            };
+            return View("MyMemberships",viewModel);
+        }
 
-            return View(viewModel);
+        [Authorize]
+        public ActionResult MyOrganizations()
+        {
+            var user_Id = User.Identity.GetUserId();
+            var viewModel = _context.Organizations
+                .Where(o => o.OwnerId == user_Id)
+                .ToList();
+
+            return View("MyOrganizations", viewModel);
         }
 
         [Authorize]
@@ -126,6 +130,17 @@ namespace DSEDFinal.Controllers
             
 
             return RedirectToAction("Details", new { id = organizationId});
+        }
+
+        [Authorize]
+        public ActionResult Default()
+        {
+            var user = _context.Users.Find(User.Identity.GetUserId());
+            if (user.DefaultOrganizationId == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Details", new {id = user.DefaultOrganizationId});
         }
     }
 }

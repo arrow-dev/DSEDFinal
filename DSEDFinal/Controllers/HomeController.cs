@@ -6,7 +6,7 @@ namespace DSEDFinal.Controllers
     {
         public ActionResult Index()
         {
-            return RedirectToAction("Index", "Organization");
+            return RedirectToAction("Default", "Organization");
         }
 
         public ActionResult About()
