@@ -48,9 +48,26 @@ namespace DSEDFinal.Controllers
                 Organization = _context.Organizations.Include(o => o.Jobs).FirstOrDefault(o => o.Id == id),
                 Memberships = _context.Memberships.Where(m => m.OrganizationId == id).Include(m => m.Member).ToList()
             };
+
             if (viewModel.Organization.OwnerId== userId)
             {
                 viewModel.ShowActions = true;
+            }
+            else
+            {
+                var authorized = false;
+                foreach (var member in viewModel.Memberships)
+                {
+                    if (member.MemberId == userId )
+                    {
+                        authorized = true;
+                        break;
+                    }
+                }
+                if (!authorized)
+                {
+                    return new HttpUnauthorizedResult();
+                }
             }
 
             return View(viewModel);
@@ -82,7 +99,7 @@ namespace DSEDFinal.Controllers
             _context.Organizations.Add(organization);
             _context.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("MyOrganizations");
         }
 
         [Authorize]
@@ -111,7 +128,7 @@ namespace DSEDFinal.Controllers
             var organizationId = viewModel.OrganizationId;
 
 
-            if (!_context.Memberships.Any(m => m.MemberId == newMember.Id && m.OrganizationId == organizationId))
+            if (!_context.Memberships.Any(m => m.MemberId == newMember.Id && m.OrganizationId == organizationId) && _context.Organizations.Find(organizationId).OwnerId == userId)
             {
                 var membership = new Membership()
                 {

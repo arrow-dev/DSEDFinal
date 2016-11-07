@@ -1,6 +1,7 @@
 ﻿using DSEDFinal.Models;
 using DSEDFinal.ViewModels;
 using Microsoft.AspNet.Identity;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace DSEDFinal.Controllers
@@ -39,6 +40,22 @@ namespace DSEDFinal.Controllers
                 JobId = viewModel.JobId,
                 UserId = User.Identity.GetUserId()
             };
+
+            var job = _context.Jobs.Find(viewModel.JobId);
+
+            var notification= new Notification(job);
+        
+            var organizatonId = job.OrganizationId;
+
+            var recipents = _context.Memberships
+                .Where(m => m.OrganizationId == organizatonId)
+                .Select(m => m.Member)
+                .ToList();
+
+            foreach (var user in recipents)
+            {
+                user.Notify(notification);
+            }
 
             _context.Hazards.Add(hazard);
             _context.SaveChanges();

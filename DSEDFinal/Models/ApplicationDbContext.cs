@@ -9,6 +9,9 @@ namespace DSEDFinal.Models
         public DbSet<Membership> Memberships { get; set; }
         public DbSet<Job> Jobs { get; set; }
         public DbSet<Hazard> Hazards { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<UserNotification> UserNotifications { get; set; } 
+
          
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -35,6 +38,11 @@ namespace DSEDFinal.Models
             modelBuilder.Entity<ApplicationUser>()
                 .HasOptional(a => a.DefaultOrganization)
                 .WithMany();
+
+            modelBuilder.Entity<UserNotification>()
+                .HasRequired(n => n.User)
+                .WithMany(u => u.UserNotifications)
+                .WillCascadeOnDelete(false);
 
             base.OnModelCreating(modelBuilder);
         }

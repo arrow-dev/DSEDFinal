@@ -5,14 +5,14 @@
 
 <h2>Details for: @Model.Organization.Name</h2>
 <h3>Jobs</h3>
-<a href=@Url.Action("Create", "Job", new {id = Model.Organization.Id}) class="btn btn-primary">Add Job</a>
+<p><a href=@Url.Action("Create", "Job", new {id = Model.Organization.Id}) class="btn btn-primary">Add Job</a></p>
 @if (Model.Organization.Jobs.Count() == 0)
 {
     <p>There are no jobs yet!</p>
 }
 else
 {
-    <ul>
+    <ul class="jobs-list">
         @foreach (var job in Model.Organization.Jobs)
         {
             <li>
@@ -25,7 +25,7 @@ else
 <h3>Members</h3>
 @if (Model.ShowActions)
 {
-    <a href=@Url.Action("AddMember", "Organization", new {id = @Model.Organization.Id}) class="btn btn-primary">Add Member</a>
+    <p><a href=@Url.Action("AddMember", "Organization", new {id = @Model.Organization.Id}) class="btn btn-primary">Add Member</a></p>
 }
 @if (Model.Memberships.Count() == 0)
 {
@@ -33,10 +33,10 @@ else
 }
 else
 {
-    <ul>
+    <ul class="member-list">
         @foreach (var membership in Model.Memberships)
         {
-            <li>@membership.Member.UserName</li>
+            <li>@membership.Member.FirstName @membership.Member.LastName | @membership.Member.Email</li>
         }
     </ul>
 }

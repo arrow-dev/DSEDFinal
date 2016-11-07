@@ -9,10 +9,14 @@
     <p>There are no hazards for this job yet!</p>
 }
 <p>@Html.ActionLink("Report Hazard", "Create", "Hazard", new { id = Model.Id }, new { @class = "btn btn-primary" })</p>
-<ul>
+<ul class="hazard-list">
     @foreach (var hazard in Model.Hazards)
     {
-        <li>@hazard.Description <small>posted by @hazard.User.FirstName @hazard.User.LastName</small></li>
+        <li>
+            <div>
+                @hazard.Description <small>posted by @hazard.User.FirstName @hazard.User.LastName</small>
+            </div>
+        </li>
     }
 </ul>
 

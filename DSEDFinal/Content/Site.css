@@ -1,13 +1,20 @@
 ﻿body {
+    background-image: url("/images/worker.jpg");
     padding-top: 50px;
     padding-bottom: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
+    background-color: rgba(212,212,212, 0.6);
+    -ms-border-radius: 15px;
+    border-radius: 15px;
     padding-left: 15px;
     padding-right: 15px;
+    margin-top: 50px;
 }
+
+
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -39,3 +46,55 @@ h6,
   font-weight: 500;
   line-height: 1.1;
 }
+
+.organization-list{
+    list-style: none;
+}
+
+.organization-list > li {
+    width: 50%;
+    font-size: 18px;
+    padding: 20px;
+    margin-top: 20px;
+    background-color:  rgba(212,212,212, 0.6);
+    -ms-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.jobs-list {
+    list-style: none;
+}
+
+.jobs-list > li {
+    width: 50%;
+    font-size: 18px;
+    padding: 20px;
+    margin-top: 20px;
+    background-color:  rgba(212,212,212, 0.6);
+    -ms-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.hazard-list {
+    list-style: none;
+}
+
+.hazard-list > li > div {
+    width: 50%;
+    font-size: 18px;
+    padding: 20px;
+    margin-top: 20px;
+    background-color:  rgba(212,212,212, 0.6);
+    -ms-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #ffffff;
+}
+
+
