@@ -16,7 +16,5 @@ namespace DSEDFinal.Models
         [Required]
         public int JobId { get; set; }
         public Job Job { get; set; }
-
-
     }
 }

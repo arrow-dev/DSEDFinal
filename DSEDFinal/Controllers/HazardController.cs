@@ -43,7 +43,7 @@ namespace DSEDFinal.Controllers
 
             var job = _context.Jobs.Find(viewModel.JobId);
 
-            var notification= new Notification(job);
+            var notification= new Notification(hazard);
         
             var organizatonId = job.OrganizationId;
 

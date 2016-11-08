@@ -9,21 +9,21 @@ namespace DSEDFinal.Models
         public DateTime DateTime { get; private set; }
         
         [Required]
-        public Job Job { get; private set; }
+        public Hazard Hazard { get; private set; }
 
         protected Notification()
         {
             
         }
 
-        public Notification(Job job)
+        public Notification(Hazard hazard)
         {
-            if (job == null)
+            if (hazard == null)
             {
-                throw new ArgumentNullException("job");
+                throw new ArgumentNullException("hazard");
             }
             DateTime=DateTime.Now;
-            Job = job;
+            Hazard = hazard;
         }
     }
 }
