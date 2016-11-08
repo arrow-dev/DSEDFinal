@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DSEDFinal.Dtos;
 using DSEDFinal.Models;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
@@ -22,19 +23,19 @@ namespace DSEDFinal.Controllers.Api
         {
             var userId = User.Identity.GetUserId();
             var notifications = _context.UserNotifications
-                .Where(un => un.UserId == userId)
+                .Where(un => un.UserId == userId && !un.IsRead)
                 .Select(un => un.Notification)
                 .Include(n => n.Hazard.User)
                 .Include(n => n.Hazard.Job)
                 .ToList();
 
-            Mapper.Initialize(c =>
-            {
-                c.CreateMap<ApplicationUser, UserDto>();
-                c.CreateMap<Job, JobDto>();
-                c.CreateMap<Hazard, HazardDto>();
-                c.CreateMap<Notification, NotificationDto>();
-            });
+            //Mapper.Initialize(c =>
+            //{
+            //    c.CreateMap<ApplicationUser, UserDto>();
+            //    c.CreateMap<Job, JobDto>();
+            //    c.CreateMap<Hazard, HazardDto>();
+            //    c.CreateMap<Notification, NotificationDto>();
+            //});
 
             return notifications.Select(Mapper.Map<Notification, NotificationDto>);
         }

@@ -1,6 +1,6 @@
 using System;
 
-namespace DSEDFinal.Controllers.Api
+namespace DSEDFinal.Dtos
 {
     public class NotificationDto
     {
