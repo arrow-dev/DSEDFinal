@@ -90,13 +90,22 @@ namespace DSEDFinal.Controllers
             {
                 return View("Create", viewModel);
             }
+            var ownerId = User.Identity.GetUserId();
             var organization = new Organization()
             {
                 Name = viewModel.Name,
-                OwnerId = User.Identity.GetUserId()
+                OwnerId = ownerId
             };
 
             _context.Organizations.Add(organization);
+
+            var membership  = new Membership()
+            {
+                MemberId = ownerId,
+                OrganizationId = organization.Id
+            };
+
+            _context.Memberships.Add(membership);
             _context.SaveChanges();
 
             return RedirectToAction("MyOrganizations");

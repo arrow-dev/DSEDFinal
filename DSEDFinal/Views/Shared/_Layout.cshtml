@@ -38,13 +38,13 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 <script type="text/x-template" id="notifications-template">
-    <ul>
+    <ul class="notifications">
         <%
         _.each(notifications, function(notification){
         %>
         <li>
-            <p><%= notification.hazard.user.firstName %> <%= notification.hazard.user.lastName %> has reported a new hazard for Job:</p>
-            <p><strong><%= notification.hazard.job.reference %></strong></p>
+            <p><strong><%= notification.hazard.user.firstName %> <%= notification.hazard.user.lastName %></strong> has reported a new hazard for Job:</p>
+            <p><strong>"<%= notification.hazard.job.reference %>"</strong></p>
             <p>"<%= notification.hazard.description %>"</p>
         </li>
         <%
