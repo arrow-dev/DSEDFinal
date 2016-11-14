@@ -39,5 +39,10 @@ namespace DSEDFinal.Models
             User = user;
             Notification = notification;
         }
+
+        public void Read()
+        {
+            IsRead = true;
+        }
     }
 }

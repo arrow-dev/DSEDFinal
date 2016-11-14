@@ -37,20 +37,21 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-<script type="text/x-template" id="notifications-template">
-    <ul class="notifications">
-        <%
-        _.each(notifications, function(notification){
-        %>
-        <li>
-            <p><strong><%= notification.hazard.user.firstName %> <%= notification.hazard.user.lastName %></strong> has reported a new hazard for Job:</p>
-            <p><strong>"<%= notification.hazard.job.reference %>"</strong></p>
-            <p>"<%= notification.hazard.description %>"</p>
-        </li>
-        <%
-        })
-        %>
-    </ul>
+
+    <script type="text/x-template" id="notifications-template">
+        <ul class="notifications">
+            <%
+                _.each(notifications, function(notification){
+                    %>
+                        <li>
+                            <p><strong><%= notification.hazard.user.firstName %> <%= notification.hazard.user.lastName %></strong> has reported a new hazard for Job:</p>
+                            <p><strong>"<%= notification.hazard.job.reference %>"</strong></p>
+                            <p>"<%= notification.hazard.description %>"</p>
+                        </li>
+                    <%
+                })
+            %>
+        </ul>
     </script>
     <script>
         $(document).ready(function() {
@@ -72,6 +73,14 @@
                         return html;
                     },
                     placement: "bottom"
+                })
+                .on("shown.bs.popover", function() {
+                    $.post("/api/notifications/markAsRead")
+                        .done(function() {
+                            $(".js-notifications-count")
+                                .text("")
+                                .addClass("hide");
+                        });
                 });
             });
         });
