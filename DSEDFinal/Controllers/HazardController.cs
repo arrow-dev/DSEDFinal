@@ -1,6 +1,7 @@
 ﻿using DSEDFinal.Models;
 using DSEDFinal.ViewModels;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -18,11 +19,23 @@ namespace DSEDFinal.Controllers
         public ActionResult Create(int id)
         {
             var userId = User.Identity.GetUserId();
+
+            var organisationId = _context.Jobs
+                .Where(j => j.Id == id)
+                .Include(j => j.Organization)
+                .Select(o => o.OrganizationId)
+                .FirstOrDefault();
+
+            if (_context.Memberships.FirstOrDefault(m=>m.MemberId == userId && m.OrganizationId == organisationId) == null)
+            return new HttpUnauthorizedResult();
+            
             var viewModel = new HazardFormViewModel()
             {
                 JobId = id
             };
             return View(viewModel);
+
+
         }
 
         [Authorize]

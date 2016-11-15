@@ -53,22 +53,9 @@ namespace DSEDFinal.Controllers
             {
                 viewModel.ShowActions = true;
             }
-            else
-            {
-                var authorized = false;
-                foreach (var member in viewModel.Memberships)
-                {
-                    if (member.MemberId == userId )
-                    {
-                        authorized = true;
-                        break;
-                    }
-                }
-                if (!authorized)
-                {
-                    return new HttpUnauthorizedResult();
-                }
-            }
+
+            if (_context.Memberships.FirstOrDefault(m => m.MemberId == userId && m.OrganizationId == id) == null)
+            return new HttpUnauthorizedResult();
 
             return View(viewModel);
         }

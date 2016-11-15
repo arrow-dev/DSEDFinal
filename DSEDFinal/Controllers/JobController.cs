@@ -19,6 +19,10 @@ namespace DSEDFinal.Controllers
         public ActionResult Create(int id)
         {
             var userId = User.Identity.GetUserId();
+
+            if (_context.Memberships.FirstOrDefault(m=>m.MemberId == userId && m.OrganizationId == id) == null)
+            return new HttpUnauthorizedResult();
+
             var viewModel = new JobFormViewModel()
             {
                 OrganizationId= id
@@ -50,10 +54,14 @@ namespace DSEDFinal.Controllers
         public ActionResult Details(int id)
         {
             var userId = User.Identity.GetUserId();
+
             var job = _context.Jobs
                 .Include(j => j.Hazards.Select(h => h.User))
                 .FirstOrDefault(j => j.Id == id);
-            
+
+            if (_context.Memberships.FirstOrDefault(m => m.MemberId == userId && m.OrganizationId == job.OrganizationId)==null)
+            return new HttpUnauthorizedResult();
+
             return View(job);
         }
     }
