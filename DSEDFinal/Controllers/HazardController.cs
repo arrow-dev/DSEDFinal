@@ -61,7 +61,7 @@ namespace DSEDFinal.Controllers
             var organizatonId = job.OrganizationId;
 
             var recipents = _context.Memberships
-                .Where(m => m.OrganizationId == organizatonId)
+                .Where(m => m.OrganizationId == organizatonId && m.MemberId != hazard.UserId)
                 .Select(m => m.Member)
                 .ToList();
 
